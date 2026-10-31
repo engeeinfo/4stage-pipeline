@@ -49,13 +49,21 @@ module pipe_tb;
         #5 
         rs1 = 5; rs2 = 3; rd = 1; func = 2'b00; addr = 125;  // Add 5 + 3 -> 8
         #20
+        if (z !== 16'd8) begin $display("FAIL: add result"); $finish(1); end
         rs1 = 6; rs2 = 4; rd = 2; func = 2'b01; addr = 126;  // Sub 6 - 4 -> 2
         #20
+        if (z !== 16'd2) begin $display("FAIL: subtract result"); $finish(1); end
         rs1 = 7; rs2 = 5; rd = 3; func = 2'b00; addr = 127;  // Add 7 + 5 -> 12
         #20
+        if (z !== 16'd12) begin $display("FAIL: second add result"); $finish(1); end
         rs1 = 8; rs2 = 6; rd = 4; func = 2'b01; addr = 128;  // Sub 8 - 6 -> 2
         #20
+        if (z !== 16'd2) begin $display("FAIL: second subtract result"); $finish(1); end
         rs1 = 9; rs2 = 7; rd = 5; func = 2'b00; addr = 129;  // Add 9 + 7 -> 16
+        #20
+        if (z !== 16'd16) begin $display("FAIL: final add result"); $finish(1); end
+        $display("PASS: pipeline arithmetic regression");
+        $finish(0);
     end
 
     // Monitor the outputs
