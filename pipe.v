@@ -29,7 +29,7 @@ module pipe(
 
     // Stage 2 (Clock 2: Perform operation)
     always @(negedge clk2) begin
-        case(func)
+        case(L12_func[1:0])
             2'b00: L23_z <= L12_A + L12_B;  // Addition
             2'b01: L23_z <= L12_A - L12_B;  // Subtraction
             2'b10: L23_z <= L12_A & L12_B;  // Bitwise AND
